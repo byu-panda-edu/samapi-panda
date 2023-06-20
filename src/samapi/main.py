@@ -16,7 +16,7 @@ from samapi.utils import decode_image, mask_to_geometry
 
 app = FastAPI()
 
-checkpoint_path = os.path.join(os.environ['conda-prefix'], ".cache", "hub", "checkpoints")
+checkpoint_path = os.path.join(os.environ['conda_prefix'], ".cache", "hub", "checkpoints")
 
 class ModelType(str, Enum):
     vit_h = "vit_h"
