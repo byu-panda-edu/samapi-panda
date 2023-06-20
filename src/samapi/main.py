@@ -1,4 +1,5 @@
 import warnings
+import os
 from enum import Enum
 from typing import Optional, Tuple
 
@@ -15,6 +16,7 @@ from samapi.utils import decode_image, mask_to_geometry
 
 app = FastAPI()
 
+checkpoint_path = os.path.join(os.environ['conda-prefix'], ".cache", "hub", "checkpoints")
 
 class ModelType(str, Enum):
     vit_h = "vit_h"
@@ -25,12 +27,15 @@ class ModelType(str, Enum):
 SAM_CHECKPOINTS = {
     ModelType.vit_h: load_state_dict_from_url(
         "https://dl.fbaipublicfiles.com/segment_anything/sam_vit_h_4b8939.pth",
+        model_dir=checkpoint_path,
     ),
     ModelType.vit_l: load_state_dict_from_url(
         "https://dl.fbaipublicfiles.com/segment_anything/sam_vit_l_0b3195.pth",
+        model_dir=checkpoint_path,
     ),
     ModelType.vit_b: load_state_dict_from_url(
         "https://dl.fbaipublicfiles.com/segment_anything/sam_vit_b_01ec64.pth",
+        model_dir=checkpoint_path,
     ),
 }
 
